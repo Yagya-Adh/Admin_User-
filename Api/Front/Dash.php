@@ -1,17 +1,26 @@
 <?php
+ini_set('display_errors', 1);
+
 session_start();
 
-$_SESSION['id'];
-$_SESSION['username'];
-$_SESSION['email'];
-$_SESSION['password'];
-$_SESSION['role'];
-$_SESSION['description'];
+// $_SESSION['id'];
+// $_SESSION['username'];
+// $_SESSION['email'];
+// $_SESSION['password'];
+// $_SESSION['role'];
+// $_SESSION['description'];
 
 
 // echo "<pre>";
 // print_r($_SESSION);
 // echo "</pre>";
+
+require('../user/config/Database.php');
+
+$db = new Database();
+$conn = $db->connect();
+
+
 
 ?>
 <!DOCTYPE html>
@@ -129,77 +138,124 @@ $_SESSION['description'];
 
                     <div class="col">
 
+                        <div class="row">
+
+
+                            <div class="container">
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        Users List
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <form action="">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Email</th>
+                                                        <th>Password</th>
+                                                        <th>Role</th>
+                                                        <th>Other</th>
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <?php
+                                                    // $q = "SELECT * FROM ";
+                                                    $table_name = "Admin_user";
+
+                                                    $q = "SELECT * FROM " . $table_name . " LIMIT 5";
+                                                    //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
+
+                                                    $sts = $conn->prepare($q);
+                                                    $sts->execute();
+                                                    $count = $sts->rowCount();
+                                                    $data = $sts->fetchAll(PDO::FETCH_OBJ);
+
+                                                    foreach ($data as $row) {
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $row->id; ?></td>
+                                                            <td><?php echo $row->name; ?></td>
+                                                            <td><?php echo $row->email; ?></td>
+                                                            <td><?php echo $row->password; ?></td>
+                                                            <td><?php echo $row->role; ?></td>
+                                                            <td> </td>
+
+                                                        </tr>
+
+
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
 
                         <div class="row">
-                            <!--  form_table -->
-                            <div class="card">
+                            <div class="container">
+                                <div class="card">
+                                    <div class="card-header">
+                                        User List filter
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="" method="post">
 
-                                <div class="card-header">
-                                    INFO
+
+                                            <div class="mb-3 row">
+
+                                                <div class="mb-3 col">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" name="name" class="form-control">
+                                                </div>
+                                                <div class="mb-3 col">
+                                                    <label for="role">Role</label>
+                                                    <input type="text" name="role" class="form-control">
+                                                </div>
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password">Password</label>
+                                                <input type="text" name="password" class="form-control">
+                                            </div>
+                                            <button name="submit_edit" class="btn btn-warning">Update User</button>
+                                        </form>
+                                    </div>
                                 </div>
-
-
-                                <div class="card container p-5 m-1 ">
-
-                                    <table class="text-dark table  mb-3 mt-3 ms-3">
-                                        <thead>
-                                            <tr>
-                                                <th> ID </th>
-                                                <th> NAME </th>
-                                                <th> EMAIL </th>
-                                                <th> PASSWORD </th>
-                                                <th> ROLE </th>
-                                                <th class="text-center"> ACTION </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <form action="">
-
-                                                <tr>
-                                                    <td><input type="text" class="col-md-8" name="id" value=""></td>
-                                                    <td><input type="text" class="col-md-12" name="name" value=""></td>
-                                                    <td><input type="email" class="col-md-12" name="email" value=""></td>
-                                                    <td><input type="text" class="col-md-12" name="password" value=""></td>
-                                                    <td><input type="text" class="col-md-10" name="role" value=""></td>
-                                                    <td class="col">
-                                                        <button type="submit" name="submit" class="btn btn-sm btn-primary">ADD</button>
-                                                        <a href="" class="btn btn-sm btn-primary">EDIT</a>
-                                                        <a href="" class="btn btn-sm btn-danger">REMOVE</a>
-
-                                                    </td>
-                                                </tr>
-
-                                            </form>
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
                             </div>
                         </div>
 
-
-
                         <div class="row">
                             h
                             <!-- other  -->
                         </div>
 
-
-
-
                         <div class="row">
-                            h
-                            <!-- other  -->
-                        </div>
-
-
-                        <div class="row">
-                            h
-                            <!-- other  -->
+                            <div class="col">A</div>
+                            <div class="col">B</div>
+                            <div class="col">C</div>
                         </div>
 
 

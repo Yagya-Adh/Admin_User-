@@ -20,7 +20,7 @@
         <div class="row d-flex vh-100 justify-content-center align-items-center">
             <div class="col-8">
                 <div class="card bg-body-tertiary rounded">
-                    <div class="card-header">
+                    <div class="card-header p-2">
                         <h1>Register</h1>
                     </div>
                     <form action="" method="post" enctype="multipart/form-data">
@@ -43,6 +43,31 @@
                                     <div class="mb-3">
                                         <label for="lname">Last Name</label>
                                         <input type="text" name="lname" class="form-control" placeholder="last name">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="gender">Gender</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Choose..</option>
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                            <option value="3">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="role">Role</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Choose..</option>
+                                            <option value="1">User</option>
+
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -91,8 +116,9 @@
                                 </div>
                             </div>
 
-
                             <a href="../login/login.php" class="btn btn-outline-primary">Register</a>
+
+                            <a href="../login/login.php" class="btn btn-outline-danger">Cancel</a>
 
                         </div>
 

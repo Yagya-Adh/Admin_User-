@@ -73,7 +73,7 @@ session_start();
 
                     </form>
                 </div>
-                <a href="../../Front/Register/register.php" text text-center">register here ...</a>
+                <a href="../../Front/Register/register.php" class="text text-center">register here ...</a>
 
                 <span class="text-secondary text-center">please enter your login user and password</span>
             </div>

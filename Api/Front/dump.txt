@@ -1,0 +1,59 @@
+ <div class="row">
+                            <!--  form_table -->
+                            <div class="card">
+
+                                <div class="card-header">
+                                    INFO
+                                </div>
+
+
+                                <div class="card container p-5 m-1 ">
+
+                                    <table class="text-dark table  mb-3 mt-3 ms-3">
+                                        <thead>
+                                            <tr>
+                                                <th> ID </th>
+                                                <th> NAME </th>
+                                                <th> EMAIL </th>
+                                                <th> PASSWORD </th>
+                                                <th> ROLE </th>
+                                                <th class="text-center"> ACTION </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <form action="">
+
+                                                <tr>
+                                                    <td><input type="text" class="col-md-8" name="id" value=""></td>
+                                                    <td><input type="text" class="col-md-12" name="name" value=""></td>
+                                                    <td><input type="email" class="col-md-12" name="email" value=""></td>
+                                                    <td><input type="text" class="col-md-12" name="password" value=""></td>
+                                                    <td><input type="text" class="col-md-10" name="role" value=""></td>
+                                                    <td class="col">
+                                                        <button type="submit" name="submit" class="btn btn-sm btn-primary">ADD</button>
+                                                        <a href="" class="btn btn-sm btn-primary">EDIT</a>
+                                                        <a href="" class="btn btn-sm btn-danger">REMOVE</a>
+
+                                                        <!--      
+                                                            <div class="mb-3">
+                                                            <select class="form-select" name="action" aria-label="Default select example">
+                                                            <option value="add">Add</option>
+                                                                <option value="delete">Delete</option>
+                                                            </select>
+                                                        </div> 
+                                                    -->
+
+                                                    </td>
+                                                </tr>
+
+                                            </form>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
