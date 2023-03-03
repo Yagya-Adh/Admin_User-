@@ -1,0 +1,127 @@
+
+    <div class="container-fluid">
+        <h2>ADMIN DASHBOARD</h2>
+        <p>Visit your dash:</p>
+        <div class="row">
+            <div class="col-sm-3">
+                <ul class="nav nav-tabs nav-stacked">
+                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                    <li><a data-toggle="tab" href="#menu1">INFORMATION</a></li>
+                    <li><a data-toggle="tab" href="#menu2">User</a></li>
+                    <li><a data-toggle="tab" href="#menu3">Description</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <h3>Home</h3>
+                        <p>Lorem ipsum...</p>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <h3>User Information</h3>
+                        <p class="fs-2"><?php
+
+
+                                        echo    $_SESSION['id'];
+                                        echo    $_SESSION['username'];
+                                        echo    $_SESSION['email'];
+                                        echo    $_SESSION['password'];
+                                        echo    $_SESSION['role'];
+                                        echo     $_SESSION['description'];
+
+                                        ?>
+                        </p>
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+                        <h3><?php echo $_SESSION['username']; ?></h3>
+                        <p>
+                            <?php
+                            echo  $_SESSION['description'];
+                            ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="card container col-3">
+
+                <div class="row container-fluid">
+                    <h2>ADMIN DASHBOARD</h2>
+                    <p>Visit your dash:</p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <ul class="nav nav-tabs nav-stacked">
+                                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                                <li><a data-toggle="tab" href="#menu1">INFORMATION</a></li>
+                                <li><a data-toggle="tab" href="#menu2">User</a></li>
+                                <li><a data-toggle="tab" href="#menu3">Description</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" card col-md-9">
+                <div class="col-md-3 container-fluid">
+                    <div class="tab-content ">
+                        <div id="home" class="tab-pane fade in active">
+                            <h3>Home</h3>
+                            <p>This is a home ipsum...</p>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <h3>User Information</h3>
+                            <p class="fs-2"><?php
+
+                                            echo    $_SESSION['id'];
+                                            echo    $_SESSION['username'];
+                                            echo    $_SESSION['email'];
+                                            echo    $_SESSION['password'];
+                                            echo    $_SESSION['role'];
+                                            echo     $_SESSION['description'];
+
+                                            ?>
+                            </p>
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <h3><?php echo $_SESSION['username']; ?></h3>
+                            <p>
+                                <?php
+                                echo  $_SESSION['description'];
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
