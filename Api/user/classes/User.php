@@ -9,6 +9,7 @@ class User
     public $role;
     public $description;
 
+    public $id;
 
     private $conn;
     private $table_name;
@@ -70,7 +71,7 @@ class User
     public function delete_data()
     {
 
-        $obQuery = "DELETE FROM  " . $this->table_name . " WHERE id ";
+        $obQuery = "DELETE FROM  " . $this->table_name . " WHERE id =" . $this->id . "";
 
         $obDel = $this->conn->prepare($obQuery);
 
@@ -93,7 +94,7 @@ class User
     {
 
         $obQuery = "UPDATE " . $this->table_name .
-            " SET name = ?, email = ?, password = ?, role = ?, description = ? WHERE id = id";
+            " SET name = ?, email = ?, password = ?, role = ?, description = ? WHERE id = " . $this->id . "";
 
         $obUp = $this->conn->prepare($obQuery);
 

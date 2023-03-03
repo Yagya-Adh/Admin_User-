@@ -168,7 +168,9 @@ $conn = $db->connect();
                                                     // $q = "SELECT * FROM ";
                                                     $table_name = "Admin_user";
 
-                                                    $q = "SELECT * FROM " . $table_name . " LIMIT 5";
+                                                    // $q = "SELECT * FROM " . $table_name . " LIMIT 5";
+                                                    $q = "SELECT * FROM " . $table_name . "";
+
                                                     //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
 
                                                     $sts = $conn->prepare($q);
@@ -204,24 +206,16 @@ $conn = $db->connect();
 
                         </div>
 
-
-
-
-
-
-
+                        <!-- up[date table -->
                         <div class="row">
                             <div class="container">
-                                <div class="card">
+                                <div class="card mt-5">
                                     <div class="card-header">
                                         User List filter
                                     </div>
                                     <div class="card-body">
-                                        <form action="" method="post">
-
-
+                                        <form action="../user/v1/update.php" method="post">
                                             <div class="mb-3 row">
-
                                                 <div class="mb-3 col">
                                                     <label for="name">Name</label>
                                                     <input type="text" name="name" class="form-control">
@@ -230,8 +224,8 @@ $conn = $db->connect();
                                                     <label for="role">Role</label>
                                                     <input type="text" name="role" class="form-control">
                                                 </div>
-
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="email">Email</label>
                                                 <input type="email" name="email" class="form-control">
@@ -246,6 +240,9 @@ $conn = $db->connect();
                                 </div>
                             </div>
                         </div>
+
+
+
 
                         <div class="row">
                             h

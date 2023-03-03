@@ -9,7 +9,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     $id = $_GET['id'];
 
-    $q = "DELETE FROM users WHERE id = ?";
+    $q = "DELETE FROM users WHERE id = " . $id . "";
     $sts = $conn->prepare($q);
     $sts->bindParam(1, $id, PDO::PARAM_INT);
 

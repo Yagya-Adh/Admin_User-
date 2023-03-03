@@ -47,6 +47,13 @@
                         <input type="text" name="role" class="form-control">
                     </div>
 
+
+                    <div class="mb-3">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" class="form-control">
+                    </div>
+
+
                     <button type="submit" name="submit" class="btn btn-success">Create</button>
 
                     <a href="http://localhost:8100/Show/Api/Front/Dash.php" class="btn btn-danger">Cancel</a>
