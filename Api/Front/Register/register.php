@@ -19,11 +19,11 @@
 
         <div class="row d-flex vh-100 justify-content-center align-items-center">
             <div class="col-8">
-                <div class="card bg-body-tertiary rounded">
+                <div class=" bg-body-tertiary rounded">
                     <div class="card-header p-2">
                         <h1>Register</h1>
                     </div>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="./RegisterCheck.php" method="post" enctype="multipart/form-data">
                         <div class="card-body mb-3">
                             <div class="row">
                                 <div class="mb-3">
@@ -51,11 +51,11 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="gender">Gender</label>
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" name="gender" aria-label="Default select example">
                                             <option selected>Choose..</option>
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
-                                            <option value="3">Other</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -63,9 +63,9 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="role">Role</label>
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" name="role" aria-label="Default select example">
                                             <option selected>Choose..</option>
-                                            <option value="1">User</option>
+                                            <option value="user">User</option>
 
                                         </select>
                                     </div>
@@ -92,33 +92,45 @@
                                 <input type="text" name="phone" class="form-control" placeholder="Phone">
                             </div>
 
-                            <div class="mb-3 ">
+                            <div class="mb-1">
                                 <label for="address">Address</label>
                                 <input type="text" name="address" class="form-control" placeholder="Address">
                             </div>
 
 
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="inputCity" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
+                                    <input type="text" name="city" class="form-control" id="inputCity">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputState" class="form-label">State</label>
-                                    <select id="inputState" class="form-select">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="inputState" name="state" class="form-select">
+                                        <option value="bagamati">Bagamati</option>
+                                        <option value="gandaki">Gandaki</option>
+                                        <option value="five">Five</option>
+
                                     </select>
                                 </div>
                                 <div class="col-md-2 mb-3">
                                     <label for="inputZip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
+                                    <input type="text" class="form-control" name="zip" id="inputZip">
                                 </div>
                             </div>
 
-                            <a href="../login/login.php" class="btn btn-outline-primary">Register</a>
+                            <div class="mb-2 row">
+                                <div class="col">
+                                    <button type="submit" name="submit" class="btn btn-outline-primary">Register</button>
 
-                            <a href="../login/login.php" class="btn btn-outline-danger">Cancel</a>
+                                    <a href="../login/login.php" class="btn btn-outline-danger">Cancel</a>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-1 d-flex justify-content-end">
+                                        <a href="../Register/check_reg_created.php" class="btn btn-outline-warning btn-sm">Check</a>
+                                    </div>
+                                    <span class="text-secondary m-1">check your accout has if created successful</span>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -135,6 +147,7 @@
 
 
         </div>
+
     </div>
 
 
@@ -146,3 +159,8 @@
 </body>
 
 </html>
+
+
+<?php
+// require('../Register/check_reg_created.php')
+?>

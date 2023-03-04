@@ -145,6 +145,18 @@ $conn = $db->connect();
                                 <div class="card mt-3">
                                     <div class="card-header">
                                         Users List
+                                        <div class="mb-3 mt-2 col-3">
+
+                                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                                <option selected>--limit Records--</option>
+                                                <option value="1">10</option>
+                                                <option value="2">100</option>
+                                                <option value="3">150</option>
+                                                <option value="4">500</option>
+                                                <option value="5">1000</option>
+                                            </select>
+
+                                        </div>
                                     </div>
 
                                     <div class="card-body">
@@ -158,7 +170,8 @@ $conn = $db->connect();
                                                         <th>Email</th>
                                                         <th>Password</th>
                                                         <th>Role</th>
-                                                        <th>Other</th>
+                                                        <th>Status</th>
+                                                        <th class="text text-center"> Action </th>
 
                                                     </tr>
                                                 </thead>
@@ -167,10 +180,13 @@ $conn = $db->connect();
                                                     <?php
                                                     // $q = "SELECT * FROM ";
                                                     $table_name = "Admin_user";
-
-                                                    // $q = "SELECT * FROM " . $table_name . " LIMIT 5";
-                                                    $q = "SELECT * FROM " . $table_name . "";
-
+                                                    $limit = 10;
+                                                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                                    $start = ($page - 1) * $limit;
+                                                    $result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
+                                                    $out = $result->fetchAll(PDO::FETCH_OBJ);
+                                                    $q = "SELECT * FROM " . $table_name . " LIMIT $limit";
+                                                    // $q = "SELECT * FROM " . $table_name . "";
                                                     //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
 
                                                     $sts = $conn->prepare($q);
@@ -181,25 +197,59 @@ $conn = $db->connect();
                                                     foreach ($data as $row) {
                                                     ?>
                                                         <tr>
-                                                            <td><?php echo $row->id; ?></td>
-                                                            <td><?php echo $row->name; ?></td>
-                                                            <td><?php echo $row->email; ?></td>
-                                                            <td><?php echo $row->password; ?></td>
-                                                            <td><?php echo $row->role; ?></td>
-                                                            <td> </td>
+                                                            <form href="action.php" method="post">
+                                                                <td><?php echo $row->id; ?> </td>
+                                                                <td><?php echo $row->name; ?></td>
+                                                                <td><?php echo $row->email; ?></td>
+                                                                <td><?php echo $row->password; ?></td>
+                                                                <td><?php echo $row->role; ?></td>
+                                                                <td><?php echo $row->status; ?></td>
 
-                                                        </tr>
+                                                                <td>
+                                                                    <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
+                                                                    <select class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
+                                                                        <option value="pending">pending</option>
+                                                                        <option value="added">added</option>
+                                                                        <option value="remover">removed</option>
+                                                                        <option value="completed">completed</option>
+                                                                    </select>
+                                                            </form>
+                                                            <!-- <button type="submit" class="btn btn-outline-success btn-sm">Action</button> -->
 
-
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>
-
+                                                            </td>
                                         </form>
+                                        </tr>
+
+                                    <?php
+                                                    }
+
+                                    ?>
+                                    </tbody>
+                                    </table>
+
+                                    </form>
+                                    </div>
+
+
+                                    <div class="card-footer">
+
+                                        <div class="mb-3">
+
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination">
+                                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                </ul>
+                                            </nav>
+
+                                        </div>
                                     </div>
                                 </div>
+
+
                             </div>
 
 
@@ -285,5 +335,14 @@ $conn = $db->connect();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
+
+<!-- <script type="text/javascript">
+    function status_update(value, id) {
+        // alert();
+
+        let url = "http://localhost:8100/Show/Api/Front/Dash.php";
+        window.location.href=url+"?id="+id+"&status="+value;
+    }
+</script> -->
 
 </html>
