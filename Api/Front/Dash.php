@@ -43,10 +43,10 @@ $conn = $db->connect();
 
 </head>
 
-<body class="bg-dark text-info">
+<body>
 
-
-    <div class="container-fluid">
+    <!-- class="bg-dark text-dark" -->
+    <div class="container-fluid bg-dark text-dark">
         <form class="d-flex mt-3 p-3" method="GET" role="search">
             <input class="form-control me-2" name="search" value="<?php if (isset($_GET['search'])) {
                                                                         echo   $_GET['search'];
@@ -71,7 +71,7 @@ $conn = $db->connect();
         <div class="row">
             <div class="mb-3">
                 <div class="col-3">
-                    <div class="mb-3">
+                    <div class="mb-3 ">
                         <span class="fs-4 text-secondary "> our admin panel</span>
 
                     </div>
@@ -109,12 +109,11 @@ $conn = $db->connect();
                 <div class="row">
 
 
-                    <div class="col-3 bg-success vh-100">
+                    <div class="col-md-3 col-lg-3 col-sm-12 bg-success vh-100 ">
 
                         <div class="row m-0">
                             <span>Current Active User</span>
                             <div class="card mb-3 p-3">
-
                                 <h3><i class="fa fa-user"></i></h3>
                                 <p> <?php echo $_SESSION['username'];  ?> [ <?php echo $_SESSION['role']; ?> ]</p>
                             </div>
@@ -124,7 +123,6 @@ $conn = $db->connect();
                             <div class="card mb-3 p-0 b-0">
                                 <a href="add_user.php" class="btn btn-outline-primary" name="add">ADD USER</a>
                             </div>
-
                         </div>
 
 
@@ -136,166 +134,188 @@ $conn = $db->connect();
                     </div>
 
 
-                    <div class="col">
+                    <div class="col vh-100 bg-white">
 
                         <div class="row">
 
+                            <div class="col-md-12 col-lg-12">
+                                <div class="container">
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            Users List
+                                            <div class="mb-3 mt-2 col-3">
 
-                            <div class="container">
-                                <div class="card mt-3">
-                                    <div class="card-header">
-                                        Users List
-                                        <div class="mb-3 mt-2 col-3">
+                                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                                    <option selected>--limit Records--</option>
+                                                    <option value="1">10</option>
+                                                    <option value="2">100</option>
+                                                    <option value="3">150</option>
+                                                    <option value="4">500</option>
+                                                    <option value="5">1000</option>
+                                                </select>
 
-                                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                                <option selected>--limit Records--</option>
-                                                <option value="1">10</option>
-                                                <option value="2">100</option>
-                                                <option value="3">150</option>
-                                                <option value="4">500</option>
-                                                <option value="5">1000</option>
-                                            </select>
-
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="card-body">
+                                        <div class="card-body">
 
-                                        <form action="">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th>Password</th>
-                                                        <th>Role</th>
-                                                        <th>Status</th>
-                                                        <th class="text text-center"> Action </th>
-
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <?php
-                                                    // $q = "SELECT * FROM ";
-                                                    $table_name = "Admin_user";
-                                                    $limit = 10;
-                                                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                                                    $start = ($page - 1) * $limit;
-                                                    $result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
-                                                    $out = $result->fetchAll(PDO::FETCH_OBJ);
-                                                    $q = "SELECT * FROM " . $table_name . " LIMIT $limit";
-                                                    // $q = "SELECT * FROM " . $table_name . "";
-                                                    //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
-
-                                                    $sts = $conn->prepare($q);
-                                                    $sts->execute();
-                                                    $count = $sts->rowCount();
-                                                    $data = $sts->fetchAll(PDO::FETCH_OBJ);
-
-                                                    foreach ($data as $row) {
-                                                    ?>
+                                            <form action="">
+                                                <table class="table ">
+                                                    <thead>
                                                         <tr>
-                                                            <form href="action.php" method="post">
-                                                                <td><?php echo $row->id; ?> </td>
-                                                                <td><?php echo $row->name; ?></td>
-                                                                <td><?php echo $row->email; ?></td>
-                                                                <td><?php echo $row->password; ?></td>
-                                                                <td><?php echo $row->role; ?></td>
-                                                                <td><?php echo $row->status; ?></td>
+                                                            <th>ID</th>
+                                                            <th>Name</th>
+                                                            <th>Email</th>
+                                                            <th>Password</th>
+                                                            <th>Role</th>
+                                                            <th>Status</th>
+                                                            <th class="text text-center"> Action </th>
 
-                                                                <td>
-                                                                    <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
-                                                                    <select class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
-                                                                        <option value="pending">pending</option>
-                                                                        <option value="added">added</option>
-                                                                        <option value="remover">removed</option>
-                                                                        <option value="completed">completed</option>
-                                                                    </select>
-                                                            </form>
-                                                            <!-- <button type="submit" class="btn btn-outline-success btn-sm">Action</button> -->
+                                                        </tr>
+                                                    </thead>
 
-                                                            </td>
+                                                    <tbody>
+                                                        <?php
+                                                        // $q = "SELECT * FROM ";
+                                                        $table_name = "Admin_user";
+                                                        $limit = 10;
+                                                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                                        $start = ($page - 1) * $limit;
+                                                        $result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
+                                                        $out = $result->fetchAll(PDO::FETCH_OBJ);
+                                                        $q = "SELECT * FROM " . $table_name . " LIMIT $limit";
+                                                        // $q = "SELECT * FROM " . $table_name . "";
+                                                        //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
+
+                                                        $sts = $conn->prepare($q);
+                                                        $sts->execute();
+                                                        $count = $sts->rowCount();
+                                                        $data = $sts->fetchAll(PDO::FETCH_OBJ);
+
+                                                        foreach ($data as $row) {
+                                                        ?>
+                                                            <tr>
+                                                                <form href="action.php" method="post">
+                                                                    <div class="mb-0">
+                                                                        <td><?php echo $row->id; ?> </td>
+                                                                        <td><?php echo $row->name; ?></td>
+                                                                        <td><?php echo $row->email; ?></td>
+                                                                        <td><?php echo $row->password; ?></td>
+                                                                        <td><?php echo $row->role; ?></td>
+                                                                        <td><?php echo $row->status; ?></td>
+
+                                                                        <td>
+                                                                            <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
+                                                                            <select class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
+                                                                                <option value="pending">pending</option>
+                                                                                <option value="added">added</option>
+                                                                                <option value="remover">removed</option>
+                                                                                <option value="completed">completed</option>
+                                                                            </select>
+                                                                    </div>
+                                                                </form>
+                                                                <!-- <button type="submit" class="btn btn-outline-success btn-sm">Action</button> -->
+
+                                                                </td>
+                                            </form>
+                                            </tr>
+
+                                        <?php
+                                                        }
+
+                                        ?>
+                                        </tbody>
+                                        </table>
+
                                         </form>
-                                        </tr>
-
-                                    <?php
-                                                    }
-
-                                    ?>
-                                    </tbody>
-                                    </table>
-
-                                    </form>
-                                    </div>
+                                        </div>
 
 
-                                    <div class="card-footer">
+                                        <div class="card-footer">
 
-                                        <div class="mb-3">
+                                            <div class="mb-3">
 
-                                            <nav aria-label="Page navigation example">
-                                                <ul class="pagination">
-                                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                                </ul>
-                                            </nav>
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination">
+                                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                    </ul>
+                                                </nav>
 
+                                            </div>
                                         </div>
                                     </div>
+
+
                                 </div>
 
-
                             </div>
-
 
 
                         </div>
 
                         <!-- up[date table -->
                         <div class="row">
-                            <div class="container">
-                                <div class="card mt-5">
-                                    <div class="card-header">
-                                        User List filter
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="../user/v1/update.php" method="post">
-                                            <div class="mb-3 row">
-                                                <div class="mb-3 col">
-                                                    <label for="name">Name</label>
-                                                    <input type="text" name="name" class="form-control">
-                                                </div>
-                                                <div class="mb-3 col">
-                                                    <label for="role">Role</label>
-                                                    <input type="text" name="role" class="form-control">
-                                                </div>
-                                            </div>
+                            <div class="col">
 
-                                            <div class="mb-3">
-                                                <label for="email">Email</label>
-                                                <input type="email" name="email" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="password">Password</label>
-                                                <input type="text" name="password" class="form-control">
-                                            </div>
-                                            <button name="submit_edit" class="btn btn-warning">Update User</button>
-                                        </form>
+                                <div class="container">
+                                    <div class="card mt-5">
+                                        <div class="card-header">
+                                            User List filter
+                                        </div>
+                                        <div class="card-body">
+                                            <form action="../user/v1/update.php" method="post">
+
+                                                <div class="mb-3 row">
+                                                    <div class="mb-3 col-2">
+                                                        <label for="id">ID</label>
+                                                        <input type="text" name="id" class="form-control">
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                                <div class="mb-3 row">
+                                                    <div class="mb-3 col">
+                                                        <label for="name">Name</label>
+                                                        <input type="text" name="name" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3 col">
+                                                        <label for="role">Role</label>
+                                                        <input type="text" name="role" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" name="email" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password">Password</label>
+                                                    <input type="text" name="password" class="form-control">
+                                                </div>
+                                                <button name="submit_edit" class="btn btn-warning">Update User</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
 
 
-
                         <div class="row">
-                            h
+                            <div class="col">
+
+                                APPLE
+
+                            </div>
                             <!-- other  -->
                         </div>
 
