@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 
 session_start();
-
+// session_unset();
 // $_SESSION['id'];
 // $_SESSION['username'];
 // $_SESSION['email'];
@@ -20,6 +20,23 @@ require('../user/config/Database.php');
 $db = new Database();
 $conn = $db->connect();
 
+
+
+// $q = "SELECT * FROM ";
+$table_name = "Admin_user";
+$limit = 10;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$start = ($page - 1) * $limit;
+$result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
+$out = $result->fetchAll(PDO::FETCH_OBJ);
+$q = "SELECT * FROM " . $table_name . " LIMIT $limit";
+// $q = "SELECT * FROM " . $table_name . "";
+//  WHERE name = '" . $username . "' AND password = '" . $password . "'";
+
+$sts = $conn->prepare($q);
+$sts->execute();
+$count = $sts->rowCount();
+$data = $sts->fetchAll(PDO::FETCH_OBJ);
 
 
 ?>
@@ -48,6 +65,8 @@ $conn = $db->connect();
     <!-- class="bg-dark text-dark" -->
     <div class="container-fluid bg-dark text-dark">
         <form class="d-flex mt-3 p-3" method="GET" role="search">
+
+            <!-- search -->
             <input class="form-control me-2" name="search" value="<?php if (isset($_GET['search'])) {
                                                                         echo   $_GET['search'];
                                                                     }
@@ -57,7 +76,7 @@ $conn = $db->connect();
             <button class="btn btn-outline-success" name="submit" type="submit">Search</button>
         </form>
 
-
+        <!-- logout -->
         <div class="col d-flex justify-content-end">
             <div>
                 <div class="p-0 m-0 me-3">
@@ -67,10 +86,10 @@ $conn = $db->connect();
             </div>
         </div>
 
-
+        <!-- side -->
         <div class="row">
             <div class="mb-3">
-                <div class="col-3">
+                <div class="col-3 ">
                     <div class="mb-3 ">
                         <span class="fs-4 text-secondary "> our admin panel</span>
 
@@ -91,16 +110,6 @@ $conn = $db->connect();
                 </div>
             </div>
 
-            <!--  <div class="col d-flex justify-content-end">
-                <div class="mb-3">
-                    <div class="card p-0 m-0">
-                        <a href="" class="btn btn-danger fs-2">H</a>
-
-                    </div>
-                    <span class="text-secondary">LOGOUT</span>
-                </div>
-            </div> -->
-
         </div>
 
         <div class="row">
@@ -109,7 +118,7 @@ $conn = $db->connect();
                 <div class="row">
 
 
-                    <div class="col-md-3 col-lg-3 col-sm-12 bg-success vh-100 ">
+                    <div class="col-sm-12 col-md-12 col-lg-3  bg-success">
 
                         <div class="row m-0">
                             <span>Current Active User</span>
@@ -141,26 +150,71 @@ $conn = $db->connect();
                             <div class="col-md-12 col-lg-12">
                                 <div class="container">
                                     <div class="card mt-3">
+
+                                        <!-- alert -->
+                                        <div class="mb-3">
+                                            <?php
+
+                                            if (isset($_GET['status'])) {
+
+                                                $_SESSION['action_update'] = "Successful";
+
+                                                if (isset($_SESSION['action_update'])) {
+                                            ?>
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        <strong>Holy guacamole!</strong> Your action is get <?php echo $_SESSION['action_update']; ?>.
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                    </div>
+
+                                            <?php
+                                                    session_unset();
+                                                }
+                                            } ?>
+                                        </div>
+
                                         <div class="card-header">
                                             Users List
-                                            <div class="mb-3 mt-2 col-3">
 
-                                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                                    <option selected>--limit Records--</option>
-                                                    <option value="1">10</option>
-                                                    <option value="2">100</option>
-                                                    <option value="3">150</option>
-                                                    <option value="4">500</option>
-                                                    <option value="5">1000</option>
-                                                </select>
+                                            <div class="row">
+                                                <div class="col-3 mb-3">
+
+                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                                        <option selected>--limit Records--</option>
+                                                        <option value="1">10</option>
+                                                        <option value="2">100</option>
+                                                        <option value="3">150</option>
+                                                        <option value="4">500</option>
+                                                        <option value="5">1000</option>
+                                                    </select>
+
+                                                </div>
+
+
+                                                <div class="col-6">
+
+                                                    <form class="d-flex" method="GET" role="search">
+
+                                                        <!-- search -->
+                                                        <input class="form-control me-2" name="search" value="<?php if (isset($_GET['search'])) {
+                                                                                                                    echo   $_GET['search'];
+                                                                                                                }
+                                                                                                                ?>" type="search" placeholder="Search" aria-label="Search">
+
+
+                                                        <button class="btn btn-outline-success btn-sm " name="submit" type="submit">Search</button>
+                                                    </form>
+                                                </div>
 
                                             </div>
+
+
+
                                         </div>
 
                                         <div class="card-body">
 
                                             <form action="">
-                                                <table class="table ">
+                                                <table class="table">
                                                     <thead>
                                                         <tr>
                                                             <th>ID</th>
@@ -176,26 +230,46 @@ $conn = $db->connect();
 
                                                     <tbody>
                                                         <?php
-                                                        // $q = "SELECT * FROM ";
-                                                        $table_name = "Admin_user";
-                                                        $limit = 10;
-                                                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                                                        $start = ($page - 1) * $limit;
-                                                        $result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
-                                                        $out = $result->fetchAll(PDO::FETCH_OBJ);
-                                                        $q = "SELECT * FROM " . $table_name . " LIMIT $limit";
-                                                        // $q = "SELECT * FROM " . $table_name . "";
-                                                        //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
 
-                                                        $sts = $conn->prepare($q);
-                                                        $sts->execute();
-                                                        $count = $sts->rowCount();
-                                                        $data = $sts->fetchAll(PDO::FETCH_OBJ);
+
+                                                        /* updaing status here , also uses dom  */
+
+                                                        if (isset($_GET['id']) && isset($_GET['status'])) {
+
+                                                            $idU = $_GET['id'];
+                                                            $statusU = $_GET['status'];
+
+                                                            // echo "<pre>";
+                                                            // print_r($_GET);
+                                                            // echo "</pre>";
+
+
+                                                            $up = "UPDATE " . $table_name . " SET status ='" . $statusU . "' WHERE id = '" . $idU . "'";
+                                                            $upSt = $conn->prepare($up);
+                                                            $upSt->execute();
+
+
+
+                                                            // $table_name = "Admin_user";
+                                                            // $limit = 10;
+                                                            // $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                                            // $start = ($page - 1) * $limit;
+                                                            // $result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
+                                                            // $out = $result->fetchAll(PDO::FETCH_OBJ);
+                                                            // $q = "SELECT * FROM " . $table_name . " LIMIT $limit";
+                                                            // // $q = "SELECT * FROM " . $table_name . "";
+                                                            // //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
+
+                                                        }
+
+
+
+
 
                                                         foreach ($data as $row) {
                                                         ?>
                                                             <tr>
-                                                                <form href="action.php" method="post">
+                                                                <form action="" method="post">
                                                                     <div class="mb-0">
                                                                         <td><?php echo $row->id; ?> </td>
                                                                         <td><?php echo $row->name; ?></td>
@@ -206,10 +280,10 @@ $conn = $db->connect();
 
                                                                         <td>
                                                                             <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
-                                                                            <select class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
+                                                                            <select onchange="update_status(this.options[this.selectedIndex].value,'<?php echo $row->id; ?>')" class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
                                                                                 <option value="pending">pending</option>
                                                                                 <option value="added">added</option>
-                                                                                <option value="remover">removed</option>
+                                                                                <option value="removed">removed</option>
                                                                                 <option value="completed">completed</option>
                                                                             </select>
                                                                     </div>
@@ -222,6 +296,7 @@ $conn = $db->connect();
 
                                         <?php
                                                         }
+
 
                                         ?>
                                         </tbody>
@@ -299,6 +374,11 @@ $conn = $db->connect();
                                                     <label for="password">Password</label>
                                                     <input type="text" name="password" class="form-control">
                                                 </div>
+
+                                                <div class="mb-3">
+                                                    <label for="description">Description</label>
+                                                    <textarea name="description" name="description" id="" class="form-control" col="40" rows="10"></textarea>
+                                                </div>
                                                 <button name="submit_edit" class="btn btn-warning">Update User</button>
                                             </form>
                                         </div>
@@ -356,13 +436,15 @@ $conn = $db->connect();
 
 </body>
 
-<!-- <script type="text/javascript">
-    function status_update(value, id) {
-        // alert();
+<script type="text/javascript">
+    function update_status(value, id) {
+        // alert(id);
+        // alert(value);
+
 
         let url = "http://localhost:8100/Show/Api/Front/Dash.php";
-        window.location.href=url+"?id="+id+"&status="+value;
+        window.location.href = url + "?id=" + id + "&status=" + value;
     }
-</script> -->
+</script>
 
 </html>

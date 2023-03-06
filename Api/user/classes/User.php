@@ -94,13 +94,14 @@ class User
     {
 
         $obQuery = "UPDATE " . $this->table_name .
-            " SET name = ?, email = ?, password = ?, role = ?, description = ? WHERE id = " . $this->id . "";
+            " SET name = '?', email = '?', password = '?', role = '?', description = '?' WHERE id = '?'" . $this->id . "";
 
         $obUp = $this->conn->prepare($obQuery);
 
         //sanitize
         //some special symbol text  values  tags
 
+        $this->id = htmlspecialchars(strip_tags($this->id));
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->password = htmlspecialchars(strip_tags($this->password));
@@ -115,6 +116,8 @@ class User
         $obUp->bindparam(3, $this->password);
         $obUp->bindparam(4, $this->role);
         $obUp->bindparam(5, $this->description);
+        $obUp->bindparam(6, $this->id);
+
 
         $obUp->execute();
 

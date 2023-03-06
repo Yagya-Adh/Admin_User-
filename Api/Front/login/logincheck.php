@@ -13,7 +13,7 @@ $conn = $db->connect();
 if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['role'])) {
 
 
-
+    /* sanitize function  */
     function test_input($data)
     {
         $data = trim($data);
@@ -21,9 +21,11 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['role']))
         $data = htmlspecialchars($data);
         return $data;
     }
+    /* sanitize function call */
     $username = test_input($_POST['user']);
     $passwords = test_input($_POST['password']);
     $role = test_input($_POST['role']);
+
 
 
     if (empty($username)) {
@@ -45,15 +47,26 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['role']))
             $result = $sts->fetchAll(PDO::FETCH_ASSOC);
             foreach ($result as $row) {
 
+
+
+                /* for user loggin to user visit page */
+                if ($row['role'] == "user") {
+                    header("location: http://localhost:8100/Show/Api/Front/login/UserPage.php");
+                    exit;
+                }
+
+
+
                 if ($row['password'] === $password && $row['role'] == $role) {
 
-                    $_SESSION['id'] = $row['id'];
-                    $_SESSION['username'] = $row['name'];
-                    $_SESSION['email'] = $row['email'];
-                    $_SESSION['password'] = $row['password'];
-                    $_SESSION['role'] = $row['role'];
-                    $_SESSION['description'] = $row['description'];
-
+                    if (isset($_SESSION)) {
+                        $_SESSION['id'] = $row['id'];
+                        $_SESSION['username'] = $row['name'];
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['password'] = $row['password'];
+                        $_SESSION['role'] = $row['role'];
+                        $_SESSION['description'] = $row['description'];
+                    }
 
                     header('location: http://localhost:8100/Show/Api/Front/Dash.php');
                     exit;
