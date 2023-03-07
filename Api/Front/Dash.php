@@ -118,7 +118,7 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                 <div class="row">
 
 
-                    <div class="col-sm-12 col-md-12 col-lg-3  bg-success">
+                    <div class="col-sm-12 col-md-12  col-lg-2  bg-success">
 
                         <div class="row m-0">
                             <span>Current Active User</span>
@@ -147,7 +147,7 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
                         <div class="row">
 
-                            <div class="col-md-12 col-lg-12">
+                            <div class="col">
                                 <div class="container">
                                     <div class="card mt-3">
 
@@ -334,7 +334,7 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
                         <!-- up[date table -->
                         <div class="row">
-                            <div class="col">
+                            <div class="col col-md-9">
 
                                 <div class="container">
                                     <div class="card mt-5">

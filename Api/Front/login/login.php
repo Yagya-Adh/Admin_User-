@@ -67,19 +67,41 @@ session_start();
 
                             <!-- <a type="submit" href="../User/home/home.php" name="submit" class="btn btn-primary btn-sm"> Login</a> -->
 
-                            <button type="submit" name="submit" class="btn btn-primary btn-sm"> Login</button>
+                            <button type="submit" id="bt" name="submit" class="btn btn-primary btn-sm"> Login</button>
 
                         </div>
 
                     </form>
                 </div>
-                <a href="../../Front/Register/register.php" class="text text-center">register here ...</a>
+                <a id="bt_reg" href="../../Front/Register/register.php" class="text text-center">register here ...</a>
 
                 <span class="text-secondary text-center">please enter your login user and password</span>
             </div>
         </div>
 
     </div>
+    <!-- audo login -->
+    <audio id="audio_log" src="../audio/mixkit-gun-click-1123 (1).wav" class="hidden"></audio>
+
+    <!-- audio register -->
+    <audio id="audio_reg" src="../audio/mixkit-gun-click-1123 (1).wav" class="hidden"></audio>
+
+    <script>
+        function BtnClicked() {
+            var target = document.getElementById('audio_log').play();
+        }
+        var bt = document.getElementById('bt').addEventListener('click', BtnClicked());
+
+
+
+
+        function BtnClicked() {
+            var target = document.getElementById('audio_reg').play();
+        }
+        var bt = document.getElementById(' bt_reg').addEventListener('click', BtnClicked());
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>

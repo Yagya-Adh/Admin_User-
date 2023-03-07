@@ -21,6 +21,14 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+
+    <!-- material ui -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
 </head>
 
 <body>
@@ -28,9 +36,9 @@ session_start();
 
 
         <!-- header section -->
-        <div class="row container-fluid">
-            <div class="col">
-                <div class="card container-fluid">
+        <div class="row p-5">
+            <div class="col ">
+                <div class="card ">
                     <nav class="navbar navbar-expand-lg bg-body-tertiary">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="#">Navbar</a>
@@ -55,11 +63,16 @@ session_start();
 
 
 
-                                <form class="d-flex" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
-                                </form>
 
+                                <div class="m-1">
+                                    <button type="button" class="btn btn-light position-relative">
+                                        Notification
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            99+
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    </button>
+                                </div>
 
                                 <div class="m-1">
                                     <a href="../logout/logout.php?time=1" class="btn btn-danger">LOGOUT</a>
@@ -75,17 +88,65 @@ session_start();
 
         <!-- body -->
         <div class="row">
+            <!-- left col -->
             <div class="col">
                 <div class="card vh-100 d-flex justfiy-content-center">
-
-
                     <div class="row">
-                        <div class="col card bg-secondary vh-100">sidebar</div>
+                        <!-- sidebar -->
+                        <div class="col card bg-light vh-100">
+
+
+                            <div class="col-12  justify-content-center p-3">
+
+                                <div class="row b-0 mb-1 ">
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        <img class="d-flex text-center fs-2 justify-content-start">
+                                        P
+                                        </img>
+                                        <span>User name</span>
+                                    </button>
+                                </div>
+
+
+                                <div class="row b-0 mb-1">
+                                    <button type="button" class="btn btn-outline-secondary">Profile</button>
+                                </div>
+
+                                <div class="row b-0 mb-1">
+                                    <button type="button" class="btn btn-outline-secondary">watch</button>
+                                </div>
+
+
+                                <div class="row b-0 mb-1">
+                                    <button type="button" class="btn btn-outline-secondary">Saved</button>
+                                </div>
+
+
+                                <div class="row b-0 mb-1">
+                                    <button type="button" class="btn btn-outline-secondary">Events</button>
+                                </div>
+
+                                <div class="row b-0 mb-1">
+                                    <button type="button" class="btn btn-outline-secondary">Profile</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- main  -->
                         <div class="col-9 bg-white vh-100">
-
-
                             <div class="card">
                                 <div class="card-header">
+
+                                    <div class="mb-3">
+
+                                        <form class="d-flex" role="search">
+                                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                            <button class="btn btn-outline-success" type="submit">Search</button>
+                                        </form>
+
+                                    </div>
+
                                     <h1>
                                         Newsfeed
                                     </h1>
