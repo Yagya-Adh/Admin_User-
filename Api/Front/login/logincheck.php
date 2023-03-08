@@ -3,6 +3,10 @@ ini_set('display_errors', 1);
 
 session_start();
 
+if (!isset($_SESSION['user'])) {
+    header('location:  http://localhost:8100/Show/Api/Front/login/login.php');
+}
+
 //database include
 require('../../user/config/Database.php');
 
@@ -62,6 +66,11 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['role']))
                     }
 
 
+
+
+                    // echo "<pre>";
+                    // print_r($_SESSION);
+                    // echo "</pre>";
                     header("location: ../UserPage.php");
                     exit;
                 }
