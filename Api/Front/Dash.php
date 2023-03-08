@@ -30,6 +30,8 @@ $start = ($page - 1) * $limit;
 $result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
 $out = $result->fetchAll(PDO::FETCH_OBJ);
 $q = "SELECT * FROM " . $table_name . " LIMIT $limit";
+
+
 // $q = "SELECT * FROM " . $table_name . "";
 //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
 
@@ -58,6 +60,13 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
     <!-- icon w3school -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!-- bootstrap w3icon -->
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 </head>
 
 <body>
@@ -67,8 +76,8 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
         <form class="d-flex mt-3 p-3" method="GET" role="search">
 
             <!-- search -->
-            <input class="form-control me-2" name="search" value="<?php if (isset($_GET['search'])) {
-                                                                        echo   $_GET['search'];
+            <input class="form-control me-2" name="search" value="<?php if (isset($_GET['search_main'])) {
+                                                                        echo   $_GET['search_main'];
                                                                     }
                                                                     ?>" type="search" placeholder="Search" aria-label="Search">
 
@@ -86,12 +95,14 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
             </div>
         </div>
 
+
+
         <!-- side -->
         <div class="row">
-            <div class="mb-3">
-                <div class="col-3 ">
-                    <div class="mb-3 ">
-                        <span class="fs-4 text-secondary "> our admin panel</span>
+            <div class="m-1">
+                <div class="col-3">
+                    <div class="mb-3">
+                        <span class="fs-4 text-secondary"> our admin panel</span>
 
                     </div>
                     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
@@ -110,7 +121,33 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                 </div>
             </div>
 
+
+            <!-- here... -->
+            <!-- bg-white -->
+            <form action="./Notification.php" method="post">
+                <div class="col d-flex  justify-content-end">
+                    <div class="me-3 mb-2">
+                        <span class="text-secondary">Notification</span>
+                        <button type="submit" class="bg-dark d-flex justify-content-center border-0">
+                            <i class="fa fa-bell text-secondary fs-1"></i>
+                            <span class="position-relative top-0 start-10 translate-middle badge rounded-pill bg-danger fs-4">
+                                <!-- herrreeeeee -->
+                                <?php
+                                if (isset($_GET['req'])) {
+                                    echo $_GET['req'];
+                                }
+                                ?>
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
         </div>
+
+
+
 
         <div class="row">
             <div class="col card container-fluid vh-100 text-dark">
@@ -135,11 +172,14 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                         </div>
 
 
-                        <div class="row">
-                            <!-- otherr -->
+                        <!-- <div class="row">
+                           // otherr
 
-
-                        </div>
+                            <i class="fa fa-home"></i>
+                            <i class="fa fa-search"></i>
+                            <i class="fa fa-cloud"></i>
+                            <i class="fa fa-trash"></i>
+                        </div> -->
                     </div>
 
 
@@ -244,19 +284,19 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                                                             // echo "</pre>";
 
 
-                                                            $up = "UPDATE " . $table_name . " SET status ='" . $statusU . "' WHERE id = '" . $idU . "'";
-                                                            $upSt = $conn->prepare($up);
-                                                            $upSt->execute();
+                                                            // $up = "UPDATE " . $table_name . " SET status ='" . $statusU . "' WHERE id = '" . $idU . "'";
+                                                            // $upSt = $conn->prepare($up);
+                                                            // $upSt->execute();
 
 
 
-                                                            // $table_name = "Admin_user";
+                                                            $table_name = "Admin_user";
                                                             // $limit = 10;
                                                             // $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                                             // $start = ($page - 1) * $limit;
                                                             // $result = $conn->prepare("SELECT * FROM $table_name LIMIT $start,$limit");
                                                             // $out = $result->fetchAll(PDO::FETCH_OBJ);
-                                                            // $q = "SELECT * FROM " . $table_name . " LIMIT $limit";
+
                                                             // // $q = "SELECT * FROM " . $table_name . "";
                                                             // //  WHERE name = '" . $username . "' AND password = '" . $password . "'";
 
@@ -264,45 +304,62 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
 
 
+                                                        if (isset($_GET['search'])) {
 
+                                                            /* search query */
+                                                            $filterValues = $_GET['search'];
+                                                            $q = "SELECT * FROM " . $table_name . " WHERE CONCAT(name,email) LIKE '%$filterValues%'";
+                                                            $sts = $conn->prepare($q);
+                                                            $sts->execute();
+                                                            $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
-                                                        foreach ($data as $row) {
+                                                            foreach ($data as $row) {
                                                         ?>
-                                                            <tr>
-                                                                <form action="" method="post">
-                                                                    <div class="mb-0">
-                                                                        <td><?php echo $row->id; ?> </td>
-                                                                        <td><?php echo $row->name; ?></td>
-                                                                        <td><?php echo $row->email; ?></td>
-                                                                        <td><?php echo $row->password; ?></td>
-                                                                        <td><?php echo $row->role; ?></td>
-                                                                        <td><?php echo $row->status; ?></td>
+                                                                <tr>
+                                                                    <form action="" method="post">
+                                                                        <div class="mb-0">
+                                                                            <td><?php echo $row->id; ?> </td>
+                                                                            <td><?php echo $row->name; ?></td>
+                                                                            <td><?php echo $row->email; ?></td>
+                                                                            <td><?php echo $row->password; ?></td>
+                                                                            <td><?php echo $row->role; ?></td>
+                                                                            <td><?php echo $row->status; ?></td>
 
-                                                                        <td>
-                                                                            <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
-                                                                            <select onchange="update_status(this.options[this.selectedIndex].value,'<?php echo $row->id; ?>')" class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
-                                                                                <option value="pending">pending</option>
-                                                                                <option value="added">added</option>
-                                                                                <option value="removed">removed</option>
-                                                                                <option value="completed">completed</option>
-                                                                            </select>
-                                                                    </div>
-                                                                </form>
-                                                                <!-- <button type="submit" class="btn btn-outline-success btn-sm">Action</button> -->
+                                                                            <td>
+                                                                                <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
+                                                                                <select onchange="update_status(this.options[this.selectedIndex].value,'<?php echo $row->id; ?>')" class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
+                                                                                    <option value="pending">pending</option>
+                                                                                    <option value="added">added</option>
+                                                                                    <option value="removed">removed</option>
+                                                                                    <option value="completed">completed</option>
+                                                                                </select>
+                                                                        </div>
+                                                                    </form>
+                                                                    <!-- <button type="submit" class="btn btn-outline-success btn-sm">Action</button> -->
 
-                                                                </td>
+                                                                    </td>
                                             </form>
                                             </tr>
 
                                         <?php
-                                                        }
-
+                                                            }
+                                                        } else {
 
                                         ?>
-                                        </tbody>
-                                        </table>
 
-                                        </form>
+                                        <tr class="col">
+                                            <td>No Record found</td>
+                                        </tr>
+
+                                    <?php } ?>
+
+
+
+
+                                    </tbody>
+                                    </table>
+
+                                    </form>
                                         </div>
 
 

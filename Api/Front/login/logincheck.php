@@ -61,7 +61,8 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['role']))
                         $_SESSION['description'] = $row['description'];
                     }
 
-                    header("location: http://localhost:8100/Show/Api/Front/login/UserPage.php");
+
+                    header("location: ../UserPage.php");
                     exit;
                 }
 
