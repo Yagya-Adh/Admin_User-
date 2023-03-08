@@ -349,7 +349,7 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                                         ?>
 
                                         <tr class="col">
-                                            <td>No Record found</td>
+                                            <td>No Record Search Match</td>
                                         </tr>
 
                                     <?php } ?>

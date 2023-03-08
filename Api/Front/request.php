@@ -12,9 +12,6 @@ $sts = $conn->prepare($q);
 $out = $sts->execute();
 $count = $sts->rowCount();
 $ob = $sts->fetchAll();
-// echo "<pre>";
-// print_r($ob);
-// echo "</pre>";
 
 
 

@@ -33,6 +33,9 @@ session_start();
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!-- bootstrap icon -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 
 
 </head>
@@ -127,9 +130,6 @@ session_start();
                         <!-- sidebar -->
 
                         <!-- small screen hide -->
-
-
-
                         <div class="col d-sm-none d-md-block card bg-light ">
                             <div class="col-12  justify-content-center p-3">
                                 <div class="row b-0 mb-1 ">
@@ -179,53 +179,114 @@ session_start();
 
                         <!-- main  -->
                         <div class="col-md-9 d-md-block bg-white vh-100">
-                            <div class="card">
-                                <div class="card-header">
-
-                                    <div class="mb-3">
-
-                                        <form class="d-flex" role="search">
-                                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                            <button class="btn btn-outline-success" type="submit">Search</button>
-                                        </form>
-
-                                    </div>
-
-                                    <h1>
-                                        Newsfeed
-                                    </h1>
-
-                                    <span class="text-secondary">
-                                        this is a user loggedin page
-                                    </span>
-                                </div>
-                                <div class="card-body">
-
-                                    <div class="card">
-
-                                        <img alt="user" height="100" width="100" />
-
-                                        <div class="mb-1">
-                                            <button class="rounded btn btn-primary">like</button>
-                                            <button class="rounded btn btn-primary">share</button>
-                                            <button class="rounded btn btn-primary">...</button>
-                                        </div>
-
-                                        <div class="card">
-                                            <textarea name="comment" placeholder="comment" class="form-control" id="" cols="30" rows="1"></textarea>
-
-                                        </div>
-
-
-                                    </div>
-
+                            <div class="row d-flex  justify-content-center">
+                                <div class="mb-3 mt-3 col-11 p-1">
+                                    <input type="text" name="search_product" placeholder="Search" class="form-control">
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col m-1">
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="./image/242-2423204_tom-jerry-cartoon-wallpaper-tom-and-jerry-cover.jpg" class="d-block w-100" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="./image/65876414_890051254681274_4004925122254209024_n-640x396.jpg" class="d-block w-100" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="./image/d3b7ea073f9b0f3672d84277de06ea1df12aa69bd02ad2a88fbbad7eb624759b._RI_V_TTW_.jpg" class="d-block w-100" alt="...">
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- other -->
+
+                            <div class="row">
+
+
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <img src="./image/65876414_890051254681274_4004925122254209024_n-640x396.jpg" alt="">
+                                        </div>
+                                        <div class="mb-3 d-flex justify-content-between">
+                                            <div class="mb-3 d-flex justify-content-between">
+                                                <button class=" border-0  btn-sm rounded">
+                                                    <span class="text-outline-danger">
+                                                        Like
+                                                        <i class="bi bi-heart-fill"></i>
+                                                    </span>
+                                                </button>
+                                                <button class=" border-0  btn-sm ms-3">
+                                                    <span class="text-outline-danger"> Comment
+
+
+                                                        <i class="bi bi-chat"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="border-0  btn-sm ms-3">
+                                                    <span class="text-outline-danger">
+                                                        Share
+                                                        <i class="bi bi-share"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col">
+
+                                    <div class="card">
+
+                                        <div class="mb-3">
+                                            <textarea name="" placeholder="comment" class="form-control" id="" cols="30" rows="1"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
                         </div>
 
+
+
+
+
+
+
+
+
+
+
                         <!-- small screen hide -->
-                        <div class="col-3 d-sm-block d-md-block card bg-secondary vh-100">
+                        <div class="col d-sm-none d-md-block card bg-secondary vh-100">
                             sidebar
 
                             <div class="card p-3">
