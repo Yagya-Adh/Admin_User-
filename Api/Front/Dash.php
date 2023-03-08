@@ -238,6 +238,7 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                                                         <input class="form-control me-2" name="search" value="<?php if (isset($_GET['search'])) {
                                                                                                                     echo   $_GET['search'];
                                                                                                                 }
+
                                                                                                                 ?>" type="search" placeholder="Search" aria-label="Search">
 
 
