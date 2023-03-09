@@ -14,7 +14,7 @@ session_start();
 // echo "<pre>";
 // print_r($_SESSION);
 // echo "</pre>";
-
+// exit;
 require('../user/config/Database.php');
 
 $db = new Database();
@@ -161,7 +161,11 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                             <span>Current Active User</span>
                             <div class="card mb-3 p-3">
                                 <h3><i class="fa fa-user"></i></h3>
-                                <p> <?php echo $_SESSION['username'];  ?> [ <?php echo $_SESSION['role']; ?> ]</p>
+                                <p> <?php if (isset($_SESSION['username'])) {
+                                        echo $_SESSION['username'];
+                                    }  ?> [ <?php if (isset($_SESSION['role'])) {
+                                                echo $_SESSION['role'];
+                                            } ?> ]</p>
                             </div>
                         </div>
 
@@ -171,7 +175,14 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
                             </div>
                         </div>
 
-
+                        <!-- user photos approve -->
+                        <form action="userPhoto.php" method="post">
+                            <div class="row m-0">
+                                <div class="card mb-3 p-0 b-0">
+                                    <button type="submit" name="photo_add" class="btn btn-outline-primary" name="userphoto">Aprove user photos</button>
+                                </div>
+                            </div>
+                        </form>
                         <!-- <div class="row">
                            // otherr
 
@@ -305,7 +316,7 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
 
 
-                                                        if (isset($_GET['search'])) {
+                                                        if (isset($_GET['search']) || empty($_GET['search'])) {
 
                                                             /* search query */
                                                             $filterValues = $_GET['search'];

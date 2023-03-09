@@ -27,7 +27,7 @@
                         <div class="card-body mb-3">
                             <div class="row">
                                 <div class="mb-3">
-                                    <input class="" type="file" name="image_url">
+                                    <input class="btn btn-outline-light" type="file" name="image">
                                     <span>Upload photo</span>
                                 </div>
                             </div>

@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL);
 session_start();
 
 // echo "Im user im logged in successfully";
@@ -219,8 +221,6 @@ session_start();
                             <!-- other -->
 
                             <div class="row">
-
-
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-header">

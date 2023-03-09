@@ -1,11 +1,13 @@
 <?php
 ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL);
 
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    header('location:  http://localhost:8100/Show/Api/Front/login/login.php');
-}
+// if (!isset($_SESSION['user'])) {
+//     header('location:  http://localhost:8100/Show/Api/Front/login/login.php');
+//     exit;
+// }
 
 //database include
 require('../../user/config/Database.php');
