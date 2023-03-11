@@ -2,6 +2,7 @@
 
 class User
 {
+    const TABLE_ADMIN_USER = 'Admin_user';
     //declare variable
     public $name;
     public $email;
@@ -12,7 +13,6 @@ class User
     public $id;
 
     private $conn;
-    private $table_name;
 
     //constructor
     public function __construct($db)
@@ -26,7 +26,7 @@ class User
     {
 
         //sql query to create data
-        $query = "INSERT INTO " . $this->table_name .
+        $query = "INSERT INTO " . self::TABLE_ADMIN_USER .
             " SET name = ?, email = ?, password = ?, role = ?, description = ? ";
 
 
@@ -71,7 +71,7 @@ class User
     public function delete_data()
     {
 
-        $obQuery = "DELETE FROM  " . $this->table_name . " WHERE id =" . $this->id . "";
+        $obQuery = "DELETE FROM  " . self::TABLE_ADMIN_USER . " WHERE id =" . $this->id . "";
 
         $obDel = $this->conn->prepare($obQuery);
 
@@ -93,7 +93,7 @@ class User
     public function update_data()
     {
 
-        $obQuery = "UPDATE " . $this->table_name .
+        $obQuery = "UPDATE " . self::TABLE_ADMIN_USER .
             " SET name = '?', email = '?', password = '?', role = '?', description = '?' WHERE id = '?'" . $this->id . "";
 
         $obUp = $this->conn->prepare($obQuery);
@@ -135,7 +135,7 @@ class User
     public function read_data()
     {
 
-        $obQuery = "SELECT * FROM " . $this->table_name . "";
+        $obQuery = "SELECT * FROM " . self::TABLE_ADMIN_USER;
         $obRead = $this->conn->prepare($obQuery);
         //sanitize
         //some special symbol text  values  tags

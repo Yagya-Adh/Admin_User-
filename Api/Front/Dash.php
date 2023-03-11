@@ -76,10 +76,7 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
         <form class="d-flex mt-3 p-3" method="GET" role="search">
 
             <!-- search -->
-            <input class="form-control me-2" name="search" value="<?php if (isset($_GET['search_main'])) {
-                                                                        echo   $_GET['search_main'];
-                                                                    }
-                                                                    ?>" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" name="search" value="<?= $_GET['search_main'] ?? $_GET['search_main'] ?>" type="search" placeholder="Search" aria-label="Search">
 
 
             <button class="btn btn-outline-success" name="submit" type="submit">Search</button>
