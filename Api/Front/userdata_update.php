@@ -37,8 +37,9 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
     <title>User requests management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
+<!-- class="bg-dark" -->
 
-<body class="bg-dark">
+<bodyclass="bg-dark">
     <div class="container-fluid vh-100  d-flex justify-content-center align-items-center">
         <div class="card mt-4">
             <h2 class="text-secondary ms-3">Users Update</h2>
@@ -56,8 +57,8 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
                             <th>USER-IMAGES</th>
                             <th>USER-NAME</th>
                             <th>USER-ID</th>
-                            <th>CREATED</th>
-                            <th>UPDATED</th>
+                            <!-- <th>CREATED</th>
+                            <th>UPDATED</th> -->
                             <th>POSTS-COMMENTS</th>
                             <th>POST-TITLE</th>
                             <th class="text-center">STATUS</th>
@@ -75,6 +76,10 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
                                 // echo "<pre>";
                                 // print_r($data);
                                 // echo "</pre>";
+
+                                $id = $data['id'];
+                                $uid = $data['u_id'];
+
                         ?>
                                 <tr>
                                     <td><?php echo $data['id']; ?></td>
@@ -83,24 +88,21 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
                                     </td>
                                     <td><?php echo $data['u_name']; ?></td>
                                     <td><?php echo $data['u_id']; ?></td>
-                                    <td><?php echo $data['created_at']; ?></td>
-                                    <td><?php echo $data['updated_at']; ?></td>
+
                                     <td><?php echo $data['u_title']; ?></td>
                                     <td><?php echo $data['u_status']; ?></td>
                                     <td><?php echo $data['statuses']; ?></td>
                                     <td>
-                                        <form action="" method="POST">
+                                        <form action="U_photo_del.php" method="POST">
 
-                                            <input type="hidden" name="id" value="">
-                                            <input type="hidden" name="uid" value="">
-
-
-                                            <button type="submit" class="btn-sm btn btn-primary">PENDING</button>
-                                            <button type="submit" class="btn-sm btn btn-danger">REMOVE</button>
-                                            <button type="submit" class="btn-sm btn btn-success">ADDED</button>
+                                            <input type="hidden" name="id" value="<?= $id ?? null ?>">
+                                            <input type="hidden" name="uid" value="<?= $uid ?? null ?>">
+                                            <button type="submit" name="pending" class="btn-sm btn btn-primary">PENDING</button>
+                                            <button type="submit" name="remove" class="btn-sm btn btn-danger">REMOVE</button>
+                                            <button type="submit" name="added" class="btn-sm btn btn-success">ADDED</button>
                                             <!-- <button class="btn btn-primary">COMPLETED</button> -->
 
-
+                                            <!-- <input type="submit" class="hidden"> -->
 
                                         </form>
                                     </td>
@@ -129,6 +131,6 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>
+    </body>
 
 </html>
