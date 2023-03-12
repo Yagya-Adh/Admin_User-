@@ -114,7 +114,7 @@ $limit = 5;
                     <!-- d-flex -->
                     <form action="aprove.php" method="post" class="form-control" enctype="multipart/form-data">
 
-                        <input type="file" name="photo" class="w-50">
+                        <input type="file" name="photo" class="w-50 mt-1 mb-1">
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="title" name="title" id="">
                         </div>
@@ -122,7 +122,7 @@ $limit = 5;
                             <textarea name="status" id="" placeholder="Whats new" class="form-control" cols="30" rows="4"></textarea>
                         </div>
                         <div class="mb-3">
-                            <input type="submit" name="upload" class="btn btn-primary m-3" value="Upload">
+                            <input type="submit" name="upload" class="btn btn-primary m-3" value="post">
                         </div>
 
 

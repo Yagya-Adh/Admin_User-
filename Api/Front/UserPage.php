@@ -300,7 +300,7 @@ session_start();
                                         To Upload information send request to Admin
 
                                     </span>
-                                    <form action="" method="post">
+                                    <form action="requestedpending.php" method="post">
 
                                         <button type="submit" class="btn btn-primary">Request</button>
 

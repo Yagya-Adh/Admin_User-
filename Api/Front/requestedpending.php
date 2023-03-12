@@ -12,7 +12,7 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Request lists</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
@@ -20,9 +20,13 @@ session_start();
 
     <div class="container-fluid">
 
-        <div class="mb-3 mt-3">
-            <a href="http://localhost:8100/Show/Api/Front/profile.php" class="btn btn-secondary">Go to profile</a>
-
+        <div class="mb-3 mt-3 d-flex justify-content-between">
+            <div class="mb-3 ">
+                <a href="http://localhost:8100/Show/Api/Front/profile.php" class="btn btn-secondary">Go to profile</a>
+            </div>
+            <div class="mb-3 ">
+                <a href="http://localhost:8100/Show/Api/Front/UserPage.php" class="btn btn-primary">Go to Home</a>
+            </div>
         </div>
         <div class="col bg-warning p-3">
             <h1> Request Pending DATA</h1>
