@@ -41,10 +41,10 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
 <body class="bg-dark">
     <div class="container-fluid vh-100  d-flex justify-content-center align-items-center">
         <div class="card mt-4">
-            <h2 class="text-secondary ms-3">Users management</h2>
+            <h2 class="text-secondary ms-3">Users Update</h2>
             <div class="card-header d-flex justify-content-between">
-                <a href="http://localhost:8100/Show/Api/Front/Dash.php" class="btn btn-primary btn-sm">Go to Dash</a>
-                <a href="userdata_update.php" class="btn btn-primary btn-sm">DATA-UPDATES</a>
+                <a href="http://localhost:8100/Show/Api/Front/Dash.php" class="btn btn-danger btn-sm">Go to Dash</a>
+                <!-- <a href="userdata_updata.php" class="btn btn-primary btn-sm">DATA-UPDATES</a> -->
 
             </div>
 
@@ -61,6 +61,8 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
                             <th>POSTS-COMMENTS</th>
                             <th>POST-TITLE</th>
                             <th class="text-center">STATUS</th>
+                            <th class="text-center">ACTION</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -86,6 +88,23 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?php echo $data['u_title']; ?></td>
                                     <td><?php echo $data['u_status']; ?></td>
                                     <td><?php echo $data['statuses']; ?></td>
+                                    <td>
+                                        <form action="" method="POST">
+
+                                            <input type="hidden" name="id" value="">
+                                            <input type="hidden" name="uid" value="">
+
+
+                                            <button type="submit" class="btn-sm btn btn-primary">PENDING</button>
+                                            <button type="submit" class="btn-sm btn btn-danger">REMOVE</button>
+                                            <button type="submit" class="btn-sm btn btn-success">ADDED</button>
+                                            <!-- <button class="btn btn-primary">COMPLETED</button> -->
+
+
+
+                                        </form>
+                                    </td>
+
 
 
                                 </tr>
@@ -93,8 +112,6 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
                             <?php }
                         } else {
                             ?>
-
-
                             <tr>
                                 <span>No User Request Found</span>
                             </tr>

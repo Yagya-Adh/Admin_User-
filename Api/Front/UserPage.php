@@ -293,12 +293,11 @@ session_start();
 
                                 <div class="mb-3">
                                     <div class="row ">
-                                        <h1>Create user</h1>
+                                        <h1>Created user </h1>
 
                                     </div>
                                     <span>
-                                        To Upload information send request to Admin
-
+                                        To view Uploads information send request to Admin pending
                                     </span>
                                     <form action="requestedpending.php" method="post">
 
