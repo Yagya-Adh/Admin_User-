@@ -9,15 +9,21 @@ $pending = 'pending';
 $remove = 'remove';
 
 
+// echo "<pre>";
+// print_r($_POST);
+// echo "</pre>";
+// echo $_POST['change'];
 
+// exit;
+$_POST['change'] ?? null;
 
-if (isset($_POST['pending'])) {
+if ($_POST['change'] == 'pending') {
 
     // Get the ID from the form
     $id = $_POST['id'];
 
     // Set the value to update
-    $pending = $_POST['pending'];
+    $pending = $_POST['change'];
 
     // Prepare and execute the SQL query
     $q = "UPDATE `" . $Table . "` SET `u_status` = :pending WHERE `id` = :id";
@@ -33,13 +39,13 @@ if (isset($_POST['pending'])) {
 
 
 
-if (isset($_POST['added'])) {
+if ($_POST['change'] == 'added') {
 
     // Get the ID from the form
     $id = $_POST['id'];
 
     // Set the value to update
-    $added = $_POST['added'];
+    $added = $_POST['change'];
 
     // Prepare and execute the SQL query
     $q = "UPDATE `" . $Table . "` SET `u_status` = :added WHERE `id` = :id";
@@ -54,7 +60,7 @@ if (isset($_POST['added'])) {
 }
 
 
-if (isset($_POST['remove'])) {
+if ($_POST['change'] == 'remove') {
 
     // Get the ID from the form
     $id = $_POST['id'];

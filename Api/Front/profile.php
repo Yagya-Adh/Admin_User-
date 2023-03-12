@@ -112,7 +112,7 @@ $limit = 5;
             <div class="card">
                 <div class="card-header">
                     <!-- d-flex -->
-                    <form action="aprove.php" method="post" class="form-control" enctype="multipart/form-data">
+                    <form action="Admin_approve.php" method="post" class="form-control" enctype="multipart/form-data">
 
                         <input type="file" name="photo" class="w-50 mt-1 mb-1">
                         <div class="mb-3">

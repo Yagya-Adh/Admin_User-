@@ -93,14 +93,18 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
                                     <td><?php echo $data['u_status']; ?></td>
                                     <td><?php echo $data['statuses']; ?></td>
                                     <td>
-                                        <form action="U_photo_del.php" method="POST">
+                                        <form action="U_photo_state.php" method="POST">
 
                                             <input type="hidden" name="id" value="<?= $id ?? null ?>">
                                             <input type="hidden" name="uid" value="<?= $uid ?? null ?>">
-                                            <button type="submit" name="pending" class="btn-sm btn btn-primary">PENDING</button>
+                                            <!-- <button type="submit" name="pending" class="btn-sm btn btn-primary">PENDING</button>
                                             <button type="submit" name="remove" class="btn-sm btn btn-danger">REMOVE</button>
                                             <button type="submit" name="added" class="btn-sm btn btn-success">ADDED</button>
-                                            <!-- <button class="btn btn-primary">COMPLETED</button> -->
+                                           
+                                           
+                                           
+                                           
+                                            <button class="btn btn-primary">COMPLETED</button> -->
 
                                             <!-- <input type="submit" class="hidden"> -->
 
@@ -108,14 +112,13 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-
-
-                                            <input type="text" id="change">
+                                            <input type="submit" class="btn-sm btn btn-success" value="set">
+                                            <input class="d-none" type="text" id="change" name="change">
 
                                             <select onchange="funchange()" name="changeState" id="changeState" value="">
                                                 <option value="pending">pending</option>
-                                                <option value="pending">pending</option>
-                                                <option value="pending">pending</option>
+                                                <option value="added">added</option>
+                                                <option value="remove">remove</option>
                                             </select>
 
 
@@ -154,7 +157,8 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
 
     <script>
         function funchange() {
-            const id = document.getElementById('changeState');
+            const select = document.getElementById('changeState').value;
+            document.getElementById('change').value = select;
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
