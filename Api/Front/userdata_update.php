@@ -104,6 +104,22 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
 
                                             <!-- <input type="submit" class="hidden"> -->
 
+
+
+
+
+
+
+                                            <input type="text" id="change">
+
+                                            <select onchange="funchange()" name="changeState" id="changeState" value="">
+                                                <option value="pending">pending</option>
+                                                <option value="pending">pending</option>
+                                                <option value="pending">pending</option>
+                                            </select>
+
+
+
                                         </form>
                                     </td>
 
@@ -130,6 +146,17 @@ $result = $readQu->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
     </div>
+
+
+
+
+
+
+    <script>
+        function funchange() {
+            const id = document.getElementById('changeState');
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 
