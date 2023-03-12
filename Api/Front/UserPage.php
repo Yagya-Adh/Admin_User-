@@ -143,7 +143,7 @@ session_start();
                                     </button>
                                 </div>
                                 <div class="row b-0 mb-1">
-                                    <a type="submit" href="http://localhost:8100/Show/Api/Front/profile.php" class="btn btn-outline-secondary">Profile</a>
+                                    <a href="http://localhost:8100/Show/Api/Front/profile.php" class="btn btn-outline-secondary">Profile</a>
                                 </div>
                                 <div class="row b-0 mb-1">
                                     <button type="submit" class="btn btn-outline-secondary">watch</button>

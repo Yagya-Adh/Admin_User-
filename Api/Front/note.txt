@@ -1,0 +1,38 @@
+  <div class="col bg-warning p-3">
+                                <h1> Request Pending DATA</h1>
+                                <?php
+
+                                $vu = "SELECT * FROM " . $tab_nam . " WHERE u_id = " . $uid . " LIMIT " . $limit;
+                                $vieSts = $conn->prepare($vu);
+                                $vieSts->execute();
+                                $data = $vieSts->fetchAll(PDO::FETCH_ASSOC);
+                                $count = $vieSts->rowCount();
+                                $PendData = "pending";
+
+                                // echo "<pre>";
+                                // print_r($data);
+                                // echo "</pre>";
+
+
+                                foreach ($data as $p) {
+                                    if ($p['statuses'] !== $addedData) {
+                                        // echo "<pre>";
+                                        // print_r($p);
+                                        // echo "</pre>";
+
+                                ?>
+                                        <div class="card">
+
+                                            <div class="card-body bg-dark text-light ">
+                                                <img src="<?php echo $p['u_photo']; ?>" alt="" class="" style="height:100px;width:100px">
+                                                <h1>Title : <?php echo $p['u_title']; ?></h1>
+                                            </div>
+                                        </div>
+
+                                <?php
+                                    }
+                                }
+                                ?>
+
+
+                            </div>

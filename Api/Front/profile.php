@@ -11,6 +11,12 @@ session_start();
 // echo "</pre>";
 // exit;
 
+require('../user/config/Database.php');
+$db = new Database();
+$conn = $db->connect();
+$uid = $_SESSION['id'];
+$tab_nam = "Uphotos";
+$limit = 5;
 
 
 ?>
@@ -22,7 +28,16 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+
+
+
+
 </head>
 
 <body>
@@ -120,57 +135,119 @@ session_start();
 
                     <?php
 
-                    require('../user/config/Database.php');
-                    $db = new Database();
-                    $conn = $db->connect();
+                    // require('../user/config/Database.php');
+                    // $db = new Database();
+                    // $conn = $db->connect();
 
                     $uid = $_SESSION['id'];
                     $tab_nam = "Uphotos";
                     $limit = 5;
 
-                    $vu = "SELECT * FROM " . $tab_nam . " WHERE u_id= " . $uid . " LIMIT " . $limit;
+                    $vu = "SELECT * FROM " . $tab_nam . " WHERE u_id = " . $uid . " LIMIT " . $limit;
                     $vieSts = $conn->prepare($vu);
                     $vieSts->execute();
                     $data = $vieSts->fetchAll(PDO::FETCH_ASSOC);
 
                     $count = $vieSts->rowCount();
+                    $addedData = "added";
+                    $PendData = "pending";
                     if ($count > 0) {
 
-
-                        foreach ($data as $row) {
-
-                            // echo "<pre>";
-                            // print_r($data);
-                            // echo "</pre>";
-
                     ?>
-                            <div class="card p-3 m-2 col-10">
-                                <form action="" method="POST">
-                                    <input value="delete" type="submit" class="btn btn-danger btn-sm" name="delete">
-                                </form>
-                                <span> <?= $row['created_at']; ?></span>
-                                <textarea name="" id="" cols="8" class="form-control p-0" rows="3">
-                                    <?php echo $row['u_status']; ?>
-                                </textarea>
-                                <img class="col-6 " src="<?= $row['u_photo'] ?>" style="height:200px; width200px" alt="uner_photo" srcset="" class=" card">
-                                <h1 class="text-secondary"><?php echo $row['u_title'] ?></h1>
 
+                        <div class="col">
 
+                            <div class="row">
+                                <div class="col bg-secondary">
+                                    space
+                                </div>
+                                <div class="col-9  p-3 row vh-100 justify-content-center">
+                                    <div class="card">
+                                        <div class="card-header">
+
+                                            <h1 class="text-secondary">News Feeds</h1>
+
+                                        </div>
+                                    </div>
+                                    <?php
+                                    foreach ($data as $row) {
+                                        if ($row['statuses'] == $addedData) {
+                                            // echo "added";
+                                            // echo "<pre>";
+                                            // print_r($row);
+                                            // echo "</pre>";
+                                    ?>
+
+                                            <div class="card ">
+
+                                                <form action="Uphotodel.php" method="POST">
+
+                                                    <div class="position-absolute top-0 start-100 ">
+                                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                        <button type="submit" class=" btn btn-outline-white btn-lg  position-relative end-100 buttom-0">
+                                                            <!-- delete -->
+                                                            <!--add dropdown menu  here...-->
+                                                            <span class="text text-dark">...</span>
+                                                            <!-- <i class="bi bi-x-lg"></i> -->
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="col absolute-relative top-0 start-50 mt-3 btn-dark">
+                                                        <!-- <span class="text"> <?= $row['created_at']; ?></span> -->
+
+                                                        <textarea id="" class="form-control p-0 " cols="10" rows="3">
+                                                                     <?php
+                                                                        echo $row['u_status'];
+
+                                                                        ?>
+                                                             </textarea>
+                                                        <div class="card p-3 m-0 col shadow d-flex">
+                                                            <img class="col p-1" src="<?= $row['u_photo'] ?>" style="height:200px; width:500px;" alt="uner_photo" srcset="">
+                                                        </div>
+                                                        <h1 class="text-dark"><?php echo $row['u_title'] ?></h1>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                </div>
+
+                        <?php
+                                        }
+                                    }
+                        ?>
                             </div>
 
+                            <div class="col-auto p-3">
+                                <div class="row">
+                                    <!-- requests for posting user data pending lists-->
+                                    <div class="mb-3">
+                                        <span class="fs-3 text-secondary">Visit your request pending lists page </span>
+                                        <form action="requestedpending.php" method="POST">
+                                            <input type="hidden" name="uid" value="<?php echo $p; ?>">
+                                            <button type="submit" class="btn btn-sm btn-warning">
+                                                <span class="text-light">Requests</span>
+                                            </button>
+                                        </form>
+                                    </div>
 
-                    <?php
-                        }
-                    } ?>
+                                </div>
+                            </div>
+                        </div>
                 </div>
+
+            <?php
+
+
+                    }
+
+            ?>
+
+
             </div>
-
-
         </div>
 
 
-
-
+    </div>
 
 
     </div>
@@ -178,6 +255,9 @@ session_start();
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
@@ -186,9 +266,22 @@ session_start();
 
 
 
-echo "<pre>";
-print_r($_POST);
-echo "<pre>";
+/*  (
+            [id] => 1
+            [u_photo] => user_img/9ItYuTQX/water.jpg
+            [u_name] => angle
+            [u_id] => 14
+            [created_at] => 2023-03-09 02:17:46
+            [updated_at] => 2023-03-09 02:17:46
+            [u_title] => water
+            [u_status] => always drink water , hydrate your body
+            [statuses] => pending
+        )
+        
+  
+ */
 
-$del = "DELETE FROM `Uphotos` WHERE 0"
+
+
+
 ?>

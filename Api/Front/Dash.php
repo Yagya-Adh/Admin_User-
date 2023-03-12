@@ -41,6 +41,8 @@ $count = $sts->rowCount();
 $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -316,62 +318,57 @@ $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
 
 
-                                                        if (isset($_GET['search']) || empty($_GET['search'])) {
-
+                                                        if (isset($_GET['search']) || !empty($_GET['search'])) {
                                                             /* search query */
-                                                            $filterValues = $_GET['search'];
+                                                            $filterValues = $_GET['search'] ?? null;
+
                                                             $q = "SELECT * FROM " . $table_name . " WHERE CONCAT(name,email) LIKE '%$filterValues%'";
-                                                            $sts = $conn->prepare($q);
-                                                            $sts->execute();
-                                                            $data = $sts->fetchAll(PDO::FETCH_OBJ);
+                                                        } else {
+                                                            $q = "SELECT * FROM " . $table_name;
+                                                        }
+                                                        $sts = $conn->prepare($q);
+                                                        $sts->execute();
+                                                        $data = $sts->fetchAll(PDO::FETCH_OBJ);
 
-                                                            foreach ($data as $row) {
+                                                        foreach ($data as $row) {
                                                         ?>
-                                                                <tr>
-                                                                    <form action="" method="post">
-                                                                        <div class="mb-0">
-                                                                            <td><?php echo $row->id; ?> </td>
-                                                                            <td><?php echo $row->name; ?></td>
-                                                                            <td><?php echo $row->email; ?></td>
-                                                                            <td><?php echo $row->password; ?></td>
-                                                                            <td><?php echo $row->role; ?></td>
-                                                                            <td><?php echo $row->status; ?></td>
+                                                            <tr>
+                                                                <form action="" method="post">
+                                                                    <div class="mb-0">
+                                                                        <td><?php echo $row->id; ?> </td>
+                                                                        <td><?php echo $row->name; ?></td>
+                                                                        <td><?php echo $row->email; ?></td>
+                                                                        <td><?php echo $row->password; ?></td>
+                                                                        <td><?php echo $row->role; ?></td>
+                                                                        <td><?php echo $row->status; ?></td>
 
-                                                                            <td>
-                                                                                <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
-                                                                                <select onchange="update_status(this.options[this.selectedIndex].value,'<?php echo $row->id; ?>')" class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
-                                                                                    <option value="pending">pending</option>
-                                                                                    <option value="added">added</option>
-                                                                                    <option value="removed">removed</option>
-                                                                                    <option value="completed">completed</option>
-                                                                                </select>
-                                                                        </div>
-                                                                    </form>
-                                                                    <!-- <button type="submit" class="btn btn-outline-success btn-sm">Action</button> -->
+                                                                        <td>
+                                                                            <!-- <form action="action.php?id=$row['id']&status=$row['status']" method="GET"> -->
+                                                                            <select onchange="update_status(this.options[this.selectedIndex].value,'<?php echo $row->id; ?>')" class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
+                                                                                <option value="pending">pending</option>
+                                                                                <option value="added">added</option>
+                                                                                <option value="removed">removed</option>
+                                                                                <option value="completed">completed</option>
+                                                                            </select>
+                                                                    </div>
+                                                                </form>
+                                                                <!-- <button type="submit" class="btn btn-outline-success btn-sm">Action</button> -->
 
-                                                                    </td>
+                                                                </td>
                                             </form>
                                             </tr>
 
                                         <?php
-                                                            }
-                                                        } else {
+                                                        }
 
                                         ?>
 
-                                        <tr class="col">
-                                            <td>No Record Search Match</td>
-                                        </tr>
-
-                                    <?php } ?>
 
 
+                                        </tbody>
+                                        </table>
 
-
-                                    </tbody>
-                                    </table>
-
-                                    </form>
+                                        </form>
                                         </div>
 
 
