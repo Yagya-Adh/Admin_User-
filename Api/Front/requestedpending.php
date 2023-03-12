@@ -46,10 +46,7 @@ session_start();
             // echo "<pre>";
             // print_r($data);
             // echo "</pre>";
-
-
-
-
+            $addedData = "added";
 
             foreach ($data as $p) {
                 if ($p['statuses'] !== $addedData) {
