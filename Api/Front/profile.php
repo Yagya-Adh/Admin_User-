@@ -114,6 +114,7 @@ $limit = 5;
                     <!-- d-flex -->
                     <form action="Admin_approve.php" method="post" class="form-control" enctype="multipart/form-data">
 
+
                         <input type="file" name="photo" class="w-50 mt-1 mb-1">
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="title" name="title" id="">
@@ -130,7 +131,7 @@ $limit = 5;
                 </div>
 
 
-                <div class="card-body">
+                <div class="card-body ">
                     <!-- view image here -->
 
                     <?php
@@ -155,13 +156,15 @@ $limit = 5;
 
                     ?>
 
-                        <div class="col">
+
+                        <!-- row -->
+                        <div class="col ">
 
                             <div class="row">
-                                <div class="col bg-secondary">
+                                <div class="col vh-100 bg-secondary">
                                     space
                                 </div>
-                                <div class="col-9  p-3 row vh-100 justify-content-center">
+                                <div class="col-9  p-3  justify-content-center">
                                     <div class="card">
                                         <div class="card-header">
 
@@ -178,7 +181,7 @@ $limit = 5;
                                             // echo "</pre>";
                                     ?>
 
-                                            <div class="card ">
+                                            <div class="card col-9 ">
 
                                                 <form action="Uphotodel.php" method="POST">
 
@@ -232,8 +235,12 @@ $limit = 5;
 
                                 </div>
                             </div>
+
+
                         </div>
+
                 </div>
+
 
             <?php
 
