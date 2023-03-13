@@ -160,10 +160,11 @@ $limit = 5;
                         <!-- row -->
                         <div class="col ">
 
-                            <div class="row">
-                                <div class="col vh-100 bg-secondary">
+                            <div class="row vh-100">
+                                <div class="col  bg-secondary">
                                     space
                                 </div>
+
                                 <div class="col-9  p-3  justify-content-center">
                                     <div class="card">
                                         <div class="card-header">

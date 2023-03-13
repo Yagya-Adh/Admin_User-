@@ -33,7 +33,7 @@ if ($_POST['change'] == 'pending') {
     $stmt->execute();
 
     // Redirect to a success page
-    header("Location: http://localhost:8100/Show/Api/Front/userdata_update.php?success=pending");
+    header("Location: http://localhost:8100/Show/Api/Front/userdata_update.php");
     exit;
 }
 
@@ -55,7 +55,7 @@ if ($_POST['change'] == 'added') {
     $stmt->execute();
 
     // Redirect to a success page
-    header("Location: http://localhost:8100/Show/Api/Front/userdata_update.php?success=added");
+    header("Location: http://localhost:8100/Show/Api/Front/userdata_update.php");
     exit;
 }
 
@@ -72,6 +72,6 @@ if ($_POST['change'] == 'remove') {
     $stmt->execute();
 
     // Redirect to a success page
-    header("Location: http://localhost:8100/Show/Api/Front/userdata_update.php?success=remove");
+    header("Location: http://localhost:8100/Show/Api/Front/userdata_update.php");
     exit;
 }

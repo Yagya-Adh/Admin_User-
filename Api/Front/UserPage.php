@@ -132,7 +132,7 @@ session_start();
                         <!-- sidebar -->
 
                         <!-- small screen hide -->
-                        <div class="col d-sm-none d-md-block card bg-light ">
+                        <div class="col-1 col-md-2 d-sm-none d-md-block card bg-light ">
                             <div class="col-12  justify-content-center p-3">
                                 <div class="row b-0 mb-1 ">
                                     <button type="submit" class="btn btn-outline-secondary">
@@ -180,7 +180,7 @@ session_start();
 
 
                         <!-- main  -->
-                        <div class="col-md-9 d-md-block bg-white vh-100">
+                        <div class="col-md-7  bg-white vh-100">
                             <div class="row d-flex  justify-content-center">
                                 <div class="mb-3 mt-3 col-11 p-1">
                                     <input type="text" name="search_product" placeholder="Search" class="form-control">
@@ -256,12 +256,9 @@ session_start();
                                 </div>
                             </div>
 
-
                             <div class="row">
                                 <div class="col">
-
                                     <div class="card">
-
                                         <div class="mb-3">
                                             <textarea name="" placeholder="comment" class="form-control" id="" cols="30" rows="1"></textarea>
                                         </div>
@@ -270,42 +267,59 @@ session_start();
                                 </div>
                             </div>
 
-
-
-
                         </div>
 
 
 
 
 
-
-
-
-
-
-
                         <!-- small screen hide -->
-                        <div class="col d-sm-none d-md-block card bg-secondary vh-100">
-                            sidebar
+                        <div class="col-3 p-2 col-md-3 d-sm-none d-md-block card bg-secondary vh-100">
 
-                            <div class="card p-3">
-
+                            <div class="card p-4 w-75">
                                 <div class="mb-3">
                                     <div class="row ">
                                         <h1>Created user </h1>
-
                                     </div>
                                     <span>
                                         To view Uploads information send request to Admin pending
                                     </span>
                                     <form action="requestedpending.php" method="post">
-
                                         <button type="submit" class="btn btn-primary">Request</button>
-
                                     </form>
                                 </div>
                             </div>
+
+                            <?php
+                            $a = array("my name is a", "", " like ", "share all my posts");
+                            $message = ["hello how are you", "hello how are you", "hello how are you"];
+                            $message = array_merge($message, $a);
+                            ?>
+
+                            <!-- message section -->
+                            <div class="card  d-flex position-fixed buttom-0 p-2 ">
+                                <div class="m-0">
+                                    <form action="" method="post">
+                                        <div class="card box_ca">
+                                            <div class="card-header bg-primary" id="" onclick="Showandhide()">Message</div>
+                                        </div>
+                                        <div class="card-body see" id="box">
+                                            <textarea name="messageread" class="form-control" id="" cols="30" rows="10">
+                                                    <?php
+                                                    foreach ($message as $m) {
+                                                        echo $m;
+                                                    }
+                                                    ?>
+                                            </textarea>
+                                            <input type="text" name="user_message" class="form-control">
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
                             <!-- <div class="row">
                                 //otherr
 
@@ -325,9 +339,24 @@ session_start();
 
 
 
+    <script>
+        var box = document.getElementById('box');
 
+        function Showandhide() {
+            box.classList.toggle("see");
+        }
+    </script>
 
+    <style>
+        .box_ca {
+            padding: 2px;
+            border: 0;
+        }
 
+        .see {
+            display: none;
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
