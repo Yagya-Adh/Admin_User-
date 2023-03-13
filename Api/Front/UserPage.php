@@ -275,8 +275,7 @@ session_start();
 
                         <!-- small screen hide -->
                         <div class="col-3 p-2 col-md-3 d-sm-none d-md-block card bg-secondary vh-100">
-
-                            <div class="card p-4 w-75">
+                            <div class="card p-4 ">
                                 <div class="mb-3">
                                     <div class="row ">
                                         <h1>Created user </h1>
@@ -295,46 +294,72 @@ session_start();
                             $message = ["hello how are you", "hello how are you", "hello how are you"];
                             $message = array_merge($message, $a);
                             ?>
+                            <!-- active users list -->
+                            <div class="card user_list">
+                                <span class="fs-3 p-1">User</span>
+                                <div class="card">
+                                    <!-- active user list and users  -->
+                                    <ul class="list_user">
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                        <li>JOHN</li>
+                                    </ul>
+                                </div>
+                            </div>
 
                             <!-- message section -->
-                            <div class="card  d-flex position-fixed buttom-0 p-2 ">
+
+                            <div class="card message_box p-2 ">
                                 <div class="m-0">
                                     <form action="" method="post">
                                         <div class="card box_ca">
-                                            <div class="card-header bg-primary" id="" onclick="Showandhide()">Message</div>
+                                            <div class="card-header bg-primary message_bar" id="" onclick="Showandhide()">Message</div>
                                         </div>
-                                        <div class="card-body see" id="box">
-                                            <textarea name="messageread" class="form-control" id="" cols="30" rows="10">
+                                        <div class="card ">
+                                            <div class="card-body see" id="box">
+                                                <textarea name="messageread" class="form-control" id="" cols="30" rows="10">
                                                     <?php
                                                     foreach ($message as $m) {
                                                         echo $m;
                                                     }
                                                     ?>
                                             </textarea>
-                                            <input type="text" name="user_message" class="form-control">
-                                            <button type="submit" class="btn btn-primary">Send</button>
-                                        </div>
+                                                <input type="text" name="user_message" class="form-control">
+                                                <button type="submit" class="btn btn-primary">Send</button>
+                                            </div>
                                     </form>
                                 </div>
                             </div>
+                        </div>
 
 
 
-                            <!-- <div class="row">
-                                //otherr
-
+                        <!-- 
+                                <div class="row">
                                 <i class="fa fa-home"></i>
                                 <i class="fa fa-search"></i>
                                 <i class="fa fa-cloud"></i>
                                 <i class="fa fa-trash"></i>
-                            </div> -->
-                        </div>
+                                </div> 
+                             -->
+
 
                     </div>
 
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -348,13 +373,47 @@ session_start();
     </script>
 
     <style>
+        .list_user {
+            padding: 3px;
+            margin-top: 10px;
+            overflow-y: scroll;
+            height: 300px;
+        }
+
+        .list_user,
+        li {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 10px;
+
+        }
+
         .box_ca {
             padding: 2px;
             border: 0;
         }
 
+        .message_bar {
+            /* width: 10px; */
+        }
+
         .see {
             display: none;
+        }
+
+        .message_box {
+            position: fixed;
+            bottom: 0;
+
+        }
+
+        .user_list {
+            height: 300px;
+            position: relative;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
 
